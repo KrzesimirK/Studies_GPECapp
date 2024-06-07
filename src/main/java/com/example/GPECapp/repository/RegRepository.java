@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegRepo extends JpaRepository<RegDHN, Long> {
+public interface RegRepository extends JpaRepository<RegDHN, Long> {
 }

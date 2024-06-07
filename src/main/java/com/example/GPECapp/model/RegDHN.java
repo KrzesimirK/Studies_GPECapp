@@ -2,43 +2,54 @@ package com.example.GPECapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
 @Data
 public class RegDHN {
 
-    @Id
-    private long idAutoReg;
-    private long modul;
-    private long identyfikator;
+    @NotEmpty
+    private int modul;
+    @NotEmpty
+    private int identyfikator;
+    @NotEmpty
     private String lokalizacja;
-    private Date dataOdczytuRed;
-    private float tZwyl;
-    private float histerezaTzalaczenia;
-    private float tZReal;
-    private float tZasZadanaAkt;
-    private float TzasCO;
-    private float kgTzew1;
-    private float kgTzew2;
-    private float kgTzew3;
-    private float kgTzew4;
-    private float kgTzew5;
-    private float kgTCO1;
-    private float kgTCO2;
-    private float kgTCO3;
-    private float kgTCO4;
-    private float kgTCO5;
-    private float minTzas;
-    private float maksTzas;
+    @NotEmpty
+    private Date dataOdczytuReg;
+    private double tZWyl;
+    private double histerezaTzalaczenia;
+    private double tZReal;
+    private double tZasZadanaAkt;
+    private double TzasCO;
+    private double kgTzew1;
+    private double kgTCO1;
+    private double kgTzew2;
+    private double kgTCO2;
+    private double kgTzew3;
+    private double kgTCO3;
+    private double kgTzew4;
+    private double kgTCO4;
+    private double kgTzew5;
+    private double kgTCO5;
+    private double minTzas;
+    private double maksTzas;
     private byte trybPracyCO;
     private byte wysterowanieZaworuCO;
-    private float tZadCWU;
-    private float tZadCWUzredukowana;
-    private float tZasCWU;
+    private double tZadCWU;
+    private double tZadCWUzredukowana;
+    private double tZasCWU;
     private byte trybPracyCWU;
     private byte wysterowanieZaworuCWU;
+
+    @Id
+    @NotNull
+    @UniqueElements
+    private long idAutoReg;
 
 }

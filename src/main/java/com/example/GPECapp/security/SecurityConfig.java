@@ -3,6 +3,7 @@ package com.example.GPECapp.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +37,26 @@ public class SecurityConfig {
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
         usersList.add(new User(
                 "Pracownik2-Pamiec", encoder.encode("GPEC123"),
-                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
+                Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"))));
         return new InMemoryUserDetailsManager(usersList);
     }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        http
+                .authorizeHttpRequests((authoR)->authoR
+                        .requestMatchers("/alarms", "/preview").hasRole("USER")
+                        .requestMatchers("/registration").hasRole("ADMIN")
+                        .requestMatchers("/", "/home").permitAll()
+                )
+                .formLogin(formLogin-> formLogin.loginPage("/login")
+                        .defaultSuccessUrl("/alarms")
+                )
+                .logout(logO -> {logO.
+                        logoutUrl("/home");
+                });
+        return http.build(); // dlaczego to na końcu?
+
+    }
+
 }

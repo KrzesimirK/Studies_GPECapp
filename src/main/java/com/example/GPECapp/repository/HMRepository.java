@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HMRepo extends JpaRepository<HeatMeter, Long> {
+public interface HMRepository extends JpaRepository<HeatMeter, Long> {
 }

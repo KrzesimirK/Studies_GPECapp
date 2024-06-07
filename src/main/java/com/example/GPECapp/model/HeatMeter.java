@@ -2,7 +2,11 @@ package com.example.GPECapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.Date;
 
@@ -10,18 +14,26 @@ import java.util.Date;
 @Data
 public class HeatMeter {
 
-    @Id
-    private long idAutoHM;
-    private long modul;
-    private long identyfikator;
+    @NotNull
+    private int modul;
+    @NotNull
+    private int identyfikator;
+    @NotEmpty
     private String lokalizacja;
+    @NotEmpty
     private String urzadzenie;
+    @NotEmpty
     private Date dataOdczytuHM;
-    private float energia;
-    private float przeplyw;
-    private float tZasHM;
-    private float tPowHM;
+    private double energia;
+    private double przeplyw;
+    private double tZasHM;
+    private double tPowHM;
+    @NotNull
     private int nrKlienta;
 
+    @Id
+    @NotNull
+    @UniqueElements
+    private long idAutoHM;
 
 }

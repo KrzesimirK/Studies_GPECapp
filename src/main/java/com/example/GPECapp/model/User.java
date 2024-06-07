@@ -1,27 +1,42 @@
 package com.example.GPECapp.model;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.hibernate.validator.constraints.UniqueElements;
+
 
 @Entity
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-@RequiredArgsConstructor
-public class User implements UserDetails {
+@NoArgsConstructor
+public class User{
 
-    @Id
+  @NotEmpty
+  private String password;
+  @NotEmpty
+  private String firstName;
+  @NotEmpty
+  private String lastName;
+  @NotNull
+  private int workerNumber;
+  private String department;
+  private int phoneNumber;
+  @NotEmpty
+  private String authorities;
+  @NotEmpty
+  @UniqueElements
+  private String login;
+
+  // czy jeżeli w bazie danych mam autoincrement - tu musze tez dodać te warunki??
+  // typu not null / unique itp. czy baza sama mi wysypie że błędy
+  // Jak z oznaczaniem PrimaryKEY !!!!!!!!!!
+  @Id
+  @UniqueElements
+  @NotNull
   private long idAutoUser;
-  private final String password;
-  private final String firstName;
-  private final String lastName;
-  private final String workerNumber;
-  private final String department;
-  private final String phoneNumber;
-  private final String authorities;
 
 }

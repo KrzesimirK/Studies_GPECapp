@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Data
-public class RegistrationService {
+public class UserService {
 
     private String password;
     private String firstName;
