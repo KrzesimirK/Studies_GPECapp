@@ -8,6 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Entity
@@ -15,8 +18,19 @@ import org.hibernate.validator.constraints.UniqueElements;
 @NoArgsConstructor
 public class User{
 
+  //!!!! Tu trzeba zastosować paswordEncoder na passwpor
+  // Czy to może powinna być metoda CONTROLERA?? - ale jak by to wtedy miało działąć
+
   @NotEmpty
   private String password;
+
+
+//  PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//  private String password = passwordEncoder.encode(this.password);
+
+//  PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//  String hashedPassword = passwordEncoder.encode(password);
+
   @NotEmpty
   private String firstName;
   @NotEmpty
@@ -33,10 +47,15 @@ public class User{
 
   // czy jeżeli w bazie danych mam autoincrement - tu musze tez dodać te warunki??
   // typu not null / unique itp. czy baza sama mi wysypie że błędy
-  // Jak z oznaczaniem PrimaryKEY !!!!!!!!!!
+  // Jak z oznaczaniem PrimaryKEY !!!!!!!!!! oraz ze ma zostać puste i baza sama nadpisze
   @Id
   @UniqueElements
-  @NotNull
   private long idAutoUser;
+
+  public toUser(PasswordEncoder passwordEncoder) {
+    return new User(
+            login, passwordEncoder.encode(password),
+            firstName, lastName, workerNumber, department, authorities, phoneNumber);
+  }
 
 }

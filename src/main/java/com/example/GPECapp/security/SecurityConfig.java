@@ -12,14 +12,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Configuration
+
+@Configuration //!! czy może lepiej RestController??
 public class SecurityConfig {
 
+    // czy to powinno być tu czy w Modelu??
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,13 +44,14 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(usersList);
     }
 
+
+    // !!!!! Do weryfikacji nazwy stron - alarms, login itp.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((authoR)->authoR
-                        .requestMatchers("/alarms", "/preview").hasRole("USER")
+                        .requestMatchers("/alarms", "/preview").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/registration").hasRole("ADMIN")
-                        .requestMatchers("/", "/home").permitAll()
                 )
                 .formLogin(formLogin-> formLogin.loginPage("/login")
                         .defaultSuccessUrl("/alarms")
