@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,14 +25,6 @@ public class User{
 
   @NotEmpty
   private String password;
-
-
-//  PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//  private String password = passwordEncoder.encode(this.password);
-
-//  PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//  String hashedPassword = passwordEncoder.encode(password);
-
   @NotEmpty
   private String firstName;
   @NotEmpty
@@ -44,18 +38,27 @@ public class User{
   @NotEmpty
   @UniqueElements
   private String login;
-
-  // czy jeżeli w bazie danych mam autoincrement - tu musze tez dodać te warunki??
-  // typu not null / unique itp. czy baza sama mi wysypie że błędy
-  // Jak z oznaczaniem PrimaryKEY !!!!!!!!!! oraz ze ma zostać puste i baza sama nadpisze
   @Id
   @UniqueElements
   private long idAutoUser;
 
-  public toUser(PasswordEncoder passwordEncoder) {
-    return new User(
-            login, passwordEncoder.encode(password),
-            firstName, lastName, workerNumber, department, authorities, phoneNumber);
+  public User (String password, String firstName, String lastName, int workerNumber,
+  String department, int phoneNumber, String authorities, String login){
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.workerNumber = workerNumber;
+    this.department = department;
+    this.phoneNumber = phoneNumber;
+    this.authorities=authorities;
+    this.login = login;
   }
 
+  // czy jeżeli w bazie danych mam autoincrement - tu musze tez dodać te warunki??
+  // typu not null / unique itp. czy baza sama mi wysypie że błędy
+  // Jak z oznaczaniem PrimaryKEY do dodatkowych zmiennych !!!!!!!!!! czy ma zostać puste i baza sama nadpisze
+
+
+
 }
+

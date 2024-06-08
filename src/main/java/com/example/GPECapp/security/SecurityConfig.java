@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -19,18 +20,17 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Configuration //!! czy może lepiej RestController??
+@Configuration
 public class SecurityConfig {
 
-    // czy to powinno być tu czy w Modelu??
+
     @Bean
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 //declare a PasswordEncoder bean, which we’ll use both when creating new users and when
-// authenticating users at login. I
-
-
+// authenticating users at login.
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
@@ -45,7 +45,6 @@ public class SecurityConfig {
     }
 
 
-    // !!!!! Do weryfikacji nazwy stron - alarms, login itp.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
@@ -62,5 +61,7 @@ public class SecurityConfig {
         return http.build(); // dlaczego to na końcu?
 
     }
+
+
 
 }

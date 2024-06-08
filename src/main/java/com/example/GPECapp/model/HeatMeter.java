@@ -2,6 +2,7 @@ package com.example.GPECapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +30,7 @@ public class HeatMeter {
     private double tZasHM;
     private double tPowHM;
     @NotNull
+    @ManyToOne
     private int nrKlienta;
 
     @Id

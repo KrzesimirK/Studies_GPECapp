@@ -3,6 +3,7 @@ package com.example.GPECapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,7 +11,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Data
-public class SM_DB {
+public class SmDb {
 
     @Id
     @NotNull
@@ -21,6 +22,7 @@ public class SM_DB {
     private String nameSM;
     @NotNull
     @UniqueElements
+    @OneToMany
     private int nrKlienta;
 
 }
