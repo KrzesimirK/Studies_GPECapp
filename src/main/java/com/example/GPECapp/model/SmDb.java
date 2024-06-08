@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Data
-public class SMieszkaniowa {
+public class SM_DB {
 
     @Id
     @NotNull
