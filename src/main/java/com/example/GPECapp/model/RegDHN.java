@@ -14,6 +14,10 @@ import java.util.Date;
 @Data
 public class RegDHN {
 
+    @Id
+    @NotNull
+    @UniqueElements
+    private long idAutoReg;
     @NotEmpty
     private int modul;
     @NotEmpty
@@ -46,10 +50,5 @@ public class RegDHN {
     private double tZasCWU;
     private byte trybPracyCWU;
     private byte wysterowanieZaworuCWU;
-
-    @Id
-    @NotNull
-    @UniqueElements
-    private long idAutoReg;
 
 }
