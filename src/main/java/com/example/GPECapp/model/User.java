@@ -1,8 +1,7 @@
 package com.example.GPECapp.model;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -18,10 +17,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "user")
 public class User{
 
-  //!!!! Tu trzeba zastosować paswordEncoder na passwpor
-  // Czy to może powinna być metoda CONTROLERA?? - ale jak by to wtedy miało działąć
+
+  @Id
+  @UniqueElements
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long idAutoUser;
 
   @NotEmpty
   private String password;
@@ -30,6 +33,7 @@ public class User{
   @NotEmpty
   private String lastName;
   @NotNull
+  @UniqueElements
   private int workerNumber;
   private String department;
   private int phoneNumber;
@@ -38,9 +42,7 @@ public class User{
   @NotEmpty
   @UniqueElements
   private String login;
-  @Id
-  @UniqueElements
-  private long idAutoUser;
+
 
   public User (String password, String firstName, String lastName, int workerNumber,
   String department, int phoneNumber, String authorities, String login){
@@ -53,12 +55,6 @@ public class User{
     this.authorities=authorities;
     this.login = login;
   }
-
-  // czy jeżeli w bazie danych mam autoincrement - tu musze tez dodać te warunki??
-  // typu not null / unique itp. czy baza sama mi wysypie że błędy
-  // Jak z oznaczaniem PrimaryKEY do dodatkowych zmiennych !!!!!!!!!! czy ma zostać puste i baza sama nadpisze
-
-
 
 }
 

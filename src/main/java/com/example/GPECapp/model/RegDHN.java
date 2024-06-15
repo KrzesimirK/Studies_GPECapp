@@ -1,23 +1,26 @@
 package com.example.GPECapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
 @Data
+@Table(name = "regdhn")
 public class RegDHN {
 
     @Id
     @NotNull
     @UniqueElements
     private long idAutoReg;
+
+
     @NotEmpty
     private int modul;
     @NotEmpty
@@ -25,6 +28,7 @@ public class RegDHN {
     @NotEmpty
     private String lokalizacja;
     @NotEmpty
+    @DateTimeFormat
     private Date dataOdczytuReg;
     private double tZWyl;
     private double histerezaTzalaczenia;

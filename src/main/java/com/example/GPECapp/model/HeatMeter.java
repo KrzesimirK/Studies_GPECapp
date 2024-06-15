@@ -1,19 +1,22 @@
 package com.example.GPECapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
 @Data
+@Table(name = "heatmeter")
 public class HeatMeter {
+
+    @Id
+    @NotNull
+    private long idAutoHM;
 
     @NotNull
     private int modul;
@@ -24,18 +27,14 @@ public class HeatMeter {
     @NotEmpty
     private String urzadzenie;
     @NotEmpty
+    @DateTimeFormat
     private Date dataOdczytuHM;
     private double energia;
     private double przeplyw;
     private double tZasHM;
     private double tPowHM;
     @NotNull
-    @ManyToOne
     private int nrKlienta;
 
-    @Id
-    @NotNull
-    @UniqueElements
-    private long idAutoHM;
 
 }
