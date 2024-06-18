@@ -1,10 +1,7 @@
 package com.example.GPECapp.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -17,14 +14,14 @@ public class SmDb {
 
     @Id
     @NotNull
-    @UniqueElements
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAutoSM;
 
     @NotEmpty
-    @UniqueElements
+    @Column(name = "nameSM",nullable = false, unique = true)
     private String nameSM;
     @NotNull
-    @UniqueElements
+    @Column(name = "nrKlienta",nullable = false, unique = true)
     private int nrKlienta;
 
 }

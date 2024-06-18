@@ -16,6 +16,7 @@ public class HeatMeter {
 
     @Id
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAutoHM;
 
     @NotNull

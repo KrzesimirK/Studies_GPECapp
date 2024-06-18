@@ -20,18 +20,17 @@ public class User{
   @NotEmpty
   private String lastName;
   @NotNull
-  @UniqueElements
+  @Column(name = "workerNumber",nullable = false, unique = true)
   private int workerNumber;
   private String department;
   private int phoneNumber;
   @NotEmpty
   private String roles;
   @NotEmpty
-  @UniqueElements
+  @Column(name = "login",nullable = false, unique = true)
   private String login;
 
   @Id
-  @UniqueElements
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long idAutoUser;
 

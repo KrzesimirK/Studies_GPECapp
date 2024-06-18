@@ -25,15 +25,15 @@ public class UserController {
         return "users";
     }
 
-
     @GetMapping("/register")
-    public String showRegistrationForm(Model model){
-        model.addAttribute("userAtrybut", new User());
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
         return "register";
     }
 
-    @PostMapping
-    public String registerUser(@ModelAttribute("userAtrybut") User user){
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user){
         userService.createUser(user);
         return "redirect:/users";
     }
@@ -44,14 +44,14 @@ public class UserController {
     public String showFormForUpdate(@PathVariable(value = "id") Long idAutoUser,
                                     Model model){
         User user = userService.getUserById(idAutoUser);
-        model.addAttribute("userAtrybut", user);
+        model.addAttribute("user", user);
         return "register_update";
     }
 
     // wprowadza nowe dane
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable(value = "id")Long idAutoUser,
-                             @ModelAttribute("userAtrybut") User user){
+                             @ModelAttribute("user") User user){
         userService.updateUser(idAutoUser, user);
         return "redirect:/users";
     }

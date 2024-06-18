@@ -38,8 +38,8 @@ public class UserService {
     public User updateUser(Long idAutoUser, User userDetails){
         User user = userRepository.findById(idAutoUser).orElse(null);
 
-        user.setIdAutoUser(userDetails.getIdAutoUser());
-        user.setPassword(userDetails.getPassword());
+
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
         user.setWorkerNumber(userDetails.getWorkerNumber());

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.awt.*;
 import java.util.List;
 
 
@@ -26,7 +27,5 @@ public class AuthController {
     public String showLoginPage1(){
         return "login";
     }
-
-
 
 }
