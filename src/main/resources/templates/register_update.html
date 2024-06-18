@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja użytkownika</title>
+</head>
+<body>
+<h1>Edycja użytkownika</h1>
+<hr>
+<form action="#" th:action="@{/users/update/{id}(id=${user.idAutoUser})}" th:object="${user}" method="post">
+    <p>Nazwa użytkownika: <input type="text" th:field="*{login}"/></p>
+    <p>Hasło: <input type="password" th:field="*{password}"/></p>
+    <p>Imię: <input type="text" th:field="*{firstName}"/></p>
+    <p>Nazwisko: <input type="text" th:field="*{lastName}"/></p>
+    <p>Nr. Pracownika: <input type="number" th:field="*{workerNumber}"/></p>
+    <p>Wydział: <input type="text" th:field="*{department}"/></p>
+    <p>Nr. Tel. : <input type="tel" th:field="*{phoneNumber}"/></p>
+    <p>Rola: <input type="text" th:field="*{roles}"/></p>
+    <p><input type="submit" value="Zapisz" /></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>GPECapp</title>
+</head>
+<body>
+<h1>Lista użytkowników</h1>
+<hr>
+<a href="/register/new">Dodaj nowego użytkownika</a>
+<div sec:authorize="isAuthenticated()">
+    <form id="logoutForm" action="/logout" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button type="submit">Wyloguj</button>
+    </form>
+    <table border="3">
+        <tr>
+            <th>IdAutoUser</th>
+            <th>Login</th>
+            <th>Hasło</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Nr. Pracownika</th>
+            <th>Wydział</th>
+            <th>Nr. Tel.</th>
+            <th>Uprawnienia</th>
+            <th>Akcje</th>
+        </tr>
+        <tr th:each="user : ${listUser}">
+            <td th:text="${user.idAutoUser}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:number="${user.workerNumber}"></td>
+            <td th:text="${user.department}"></td>
+            <td th:tel="${user.phoneNumber}"></td>
+            <td th:text="${user.roles}"></td>
+            <td>
+                <a th:href="@{/users/edit/{id}(id=${user.idAutoUser})}">Edytuj</a>
+                <a th:href="@{/users/delete/{id}(id=${user.idAutoUser})}">Usuń</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

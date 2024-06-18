@@ -38,6 +38,7 @@ public class UserService {
     public User updateUser(Long idAutoUser, User userDetails){
         User user = userRepository.findById(idAutoUser).orElse(null);
 
+        user.setIdAutoUser(userDetails.getIdAutoUser());
         user.setPassword(userDetails.getPassword());
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
@@ -50,8 +51,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(Long idAutoUser) {
+        userRepository.deleteById(idAutoUser);
     }
 
 }

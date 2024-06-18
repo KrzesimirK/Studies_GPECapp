@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
 
 
@@ -13,11 +12,6 @@ import org.hibernate.validator.constraints.UniqueElements;
 @Table(name = "user")
 public class User{
 
-
-  @Id
-  @UniqueElements
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long idAutoUser;
 
   @NotEmpty
   private String password;
@@ -36,11 +30,16 @@ public class User{
   @UniqueElements
   private String login;
 
+  @Id
+  @UniqueElements
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long idAutoUser;
+
 public User(){
 }
 
   public User (String password, String firstName, String lastName, int workerNumber,
-               String department, int phoneNumber, String roles, String login){
+               String department, int phoneNumber, String roles, String login, long idAutoUser){
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -49,6 +48,7 @@ public User(){
     this.phoneNumber = phoneNumber;
     this.roles = roles;
     this.login = login;
+    this.idAutoUser = idAutoUser;
   }
 
 }

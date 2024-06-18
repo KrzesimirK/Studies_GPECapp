@@ -25,7 +25,6 @@ public class SmDb {
     private String nameSM;
     @NotNull
     @UniqueElements
-    @OneToMany
     private int nrKlienta;
 
 }

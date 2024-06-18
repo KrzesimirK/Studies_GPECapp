@@ -1,2 +1,4 @@
-package com.example.GPECapp.controller;public class AlarmsControler {
+package com.example.GPECapp.controller;
+
+public class AlarmsController {
 }

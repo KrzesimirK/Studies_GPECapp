@@ -1,0 +1,103 @@
+-- create table user
+-- (
+--     password     varchar(255) not null,
+--     firstName    text         not null,
+--     lastName     text         not null,
+--     workerNumber int          not null,
+--     department   varchar(255) null,
+--     phoneNumber  int          null,
+--     roles        varchar(255) not null,
+--     login        varchar(255) not null,
+--     idAutoUser   int          not null
+--         primary key,
+--     constraint idAutoUser_UNIQUE
+--         unique (idAutoUser),
+--     constraint login_UNIQUE
+--         unique (login),
+--     constraint workerNumber_UNIQUE
+--         unique (workerNumber)
+-- );
+--
+--
+-- create table urzadzenia
+-- (
+--     idAutoU       int auto_increment
+--         primary key,
+--     identyfikator int    null,
+--     modul         int    null,
+--     nrKlienta     int    not null,
+--     id_autou      bigint not null,
+--     nr_klienta    int    not null,
+--     constraint idAutoIdef_UNIQUE
+--         unique (idAutoU)
+-- );
+--
+--
+-- create table smdb
+-- (
+--     idAytoSM  bigint auto_increment
+--         primary key,
+--     nameSM    varchar(255) not null,
+--     nrKlienta int          not null,
+--     constraint idAytoSM_UNIQUE
+--         unique (idAytoSM),
+--     constraint nameSM_UNIQUE
+--         unique (nameSM)
+-- );
+--
+--
+-- create table regdhn
+-- (
+--     idAutoReg             bigint auto_increment
+--         primary key,
+--     modul                 int          not null,
+--     identyfikator         int          not null,
+--     lokalizacja           varchar(255) not null,
+--     dataOdczytuReg        datetime     not null,
+--     tZWyl                 double       null,
+--     histerezaTzalaczenia  double       null,
+--     tZReal                double       null,
+--     tZasZadanaAkt         double       null,
+--     tZasCO                double       null,
+--     kgTzew1               double       null,
+--     kgTCO1                double       null,
+--     kgTzew2               double       null,
+--     kgTCO2                double       null,
+--     kgTzew3               double       null,
+--     kgTCO3                double       null,
+--     kgTzew4               double       null,
+--     kgTCO4                double       null,
+--     kgTzew5               double       null,
+--     kgTCO5                double       null,
+--     minTzas               double       null,
+--     maksTzas              double       null,
+--     trybPracyCO           int          null,
+--     wysterowanieZaworuCO  int          null,
+--     tZadCWU               double       null,
+--     tZadCWUzredukowana    double       null,
+--     tZasCWU               double       null,
+--     trybPracyCWU          int          null,
+--     wysterowanieZaworuCWU int          null,
+--     constraint idAutoReg_UNIQUE
+--         unique (idAutoReg)
+-- );
+--
+--
+-- create table heatmeter
+-- (
+--     idAutoHM      bigint auto_increment
+--         primary key,
+--     modul         int          not null,
+--     identyfikator int          not null,
+--     lokalizacja   varchar(255) not null,
+--     urzadzenie    varchar(255) not null,
+--     dataOdczytuHM datetime     not null,
+--     energia       double       null,
+--     przeplyw      int          null,
+--     tZasHM        double       null,
+--     tPowHM        double       null,
+--     nrKlienta     int          not null,
+--     constraint idAutoHM_UNIQUE
+--         unique (idAutoHM)
+-- );
+
