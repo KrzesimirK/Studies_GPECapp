@@ -3,10 +3,13 @@ package com.example.GPECapp.controller;
 import com.example.GPECapp.model.User;
 import com.example.GPECapp.repository.UserRepository;
 import com.example.GPECapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -51,7 +54,12 @@ public class UserController {
     // wprowadza nowe dane
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable(value = "id")Long idAutoUser,
-                             @ModelAttribute("user") User user){
+                             @ModelAttribute("user") @Valid User user,
+                             Errors errors,
+                             SessionStatus sessionStatus){
+        if (errors.hasErrors()){
+            return "register_update";
+        }
         userService.updateUser(idAutoUser, user);
         return "redirect:/users";
     }
@@ -61,6 +69,7 @@ public class UserController {
         userService.deleteUser(idAutoUser);
         return "redirect:/users";
     }
+
 
 
 
