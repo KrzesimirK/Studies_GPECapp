@@ -17,7 +17,7 @@ public class RegDHN {
 
     @Id
     @NotNull
-    @UniqueElements
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAutoReg;
 
 

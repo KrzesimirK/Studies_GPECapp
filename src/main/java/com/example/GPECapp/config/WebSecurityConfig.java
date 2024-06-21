@@ -17,20 +17,19 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authoR) -> authoR
-//                        .requestMatchers("/alarms", "/preview", "/users").hasAnyRole("USER", "ADMIN")
-//                        .requestMatchers("/register").hasRole("ADMIN")
-                        .requestMatchers("/register", "/users").permitAll()
                         .requestMatchers("/home", "/").permitAll()
-//                        .anyRequest().authenticated()
-                                .anyRequest().permitAll()
+                        .requestMatchers("/alarms", "/preview").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/register", "/users").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .formLogin((form)->form.loginPage("/login")
+                        .defaultSuccessUrl("/alarms")
+                        .permitAll()
+                ).logout((logO)->logO
+                        .permitAll()
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
                 );
-//                .formLogin((form)->form.loginPage("/login")
-//                        .permitAll()
-//                ).logout((logO)->logO
-//                        .permitAll()
-//                        .logoutUrl("/logout")
-//                        .logoutSuccessUrl("/login?logout")
-//                );
         return http.build();
     }
 

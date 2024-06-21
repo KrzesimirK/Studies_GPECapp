@@ -7,15 +7,14 @@
 <body>
 <h1>Rejestracja nowego użytkownika</h1>
 <hr>
-<form th:action="@{/users/register}" th:object="${user}" method="post">
-    <p>Nazwa użytkownika: <input type="text" th:field="login"/></p>
-    <p>Hasło: <input type="password" th:field="password"/></p>
-    <p>Imię: <input type="text" th:field="firstName"/></p>
-    <p>Nazwisko: <input type="text" th:field="lastName"/></p>
-    <p>Nr. Pracownika: <input type="number" th:field="workerNumber"/></p>
-    <p>Wydział: <input type="text" th:field="department"/></p>
-    <p>Nr. Tel. : <input type="tel" th:field="phoneNumber"/></p>
-    <p>Rola: <input type="text" th:field="roles"/></p>
+<form th:action="@{/users/register}" th:object="${user}" method="post"> <!--user to moje mapowanie - odwołanie do modelu user-->
+    <p>Nazwa użytkownika: <input type="text" th:field="${user.login}" /></p>
+    <p>Hasło: <input type="password" th:field="${user.password}"/></p>
+    <p>Imię: <input type="text" th:field="${user.firstName}"/></p>
+    <p>Nazwisko: <input type="text" th:field="${user.lastName}"/></p>
+    <p>Nr. Pracownika: <input type="number" th:field="${user.workerNumber}"/></p>
+    <p>Nr. Tel. : <input type="tel" th:field="${user.phoneNumber}"/></p>
+    <p>Rola: <input type="text" th:field="${user.roles}"/></p>
     <p><input type="submit" value="Zarejestruj użytkownika"/></p>
 </form>
 </body>

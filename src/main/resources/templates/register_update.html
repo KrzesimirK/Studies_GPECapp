@@ -8,9 +8,16 @@
 <h1>Edycja użytkownika</h1>
 <hr>
 <form action="#" th:action="@{/users/update/{id}(id=${user.idAutoUser})}" th:object="${user}" method="post">
-    <p>Nazwa użytkownika: <input type="text" th:field="*{login}"/></p>
+
+    <p>Nazwa użytkownika: <input type="text" th:field="*{login}" th:errorclass="invalid"/></p>
+    <div th:if="${#fields.hasErrors('login')}" class="red-text" th:errors="*{login}">Error</div>
+
     <p>Hasło: <input type="password" th:field="*{password}"/></p>
+
+
     <p>Imię: <input type="text" th:field="*{firstName}"/></p>
+
+
     <p>Nazwisko: <input type="text" th:field="*{lastName}"/></p>
     <p>Nr. Pracownika: <input type="number" th:field="*{workerNumber}"/></p>
     <p>Wydział: <input type="text" th:field="*{department}"/></p>

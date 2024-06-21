@@ -3,10 +3,13 @@ package com.example.GPECapp.controller;
 import com.example.GPECapp.model.User;
 import com.example.GPECapp.repository.UserRepository;
 import com.example.GPECapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -25,15 +28,15 @@ public class UserController {
         return "users";
     }
 
-
     @GetMapping("/register")
-    public String showRegistrationForm(Model model){
-        model.addAttribute("userAtrybut", new User());
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
         return "register";
     }
 
-    @PostMapping
-    public String registerUser(@ModelAttribute("userAtrybut") User user){
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user){
         userService.createUser(user);
         return "redirect:/users";
     }
@@ -44,14 +47,19 @@ public class UserController {
     public String showFormForUpdate(@PathVariable(value = "id") Long idAutoUser,
                                     Model model){
         User user = userService.getUserById(idAutoUser);
-        model.addAttribute("userAtrybut", user);
+        model.addAttribute("user", user);
         return "register_update";
     }
 
     // wprowadza nowe dane
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable(value = "id")Long idAutoUser,
-                             @ModelAttribute("userAtrybut") User user){
+                             @ModelAttribute("user") @Valid User user,
+                             Errors errors,
+                             SessionStatus sessionStatus){
+        if (errors.hasErrors()){
+            return "register_update";
+        }
         userService.updateUser(idAutoUser, user);
         return "redirect:/users";
     }
@@ -61,6 +69,7 @@ public class UserController {
         userService.deleteUser(idAutoUser);
         return "redirect:/users";
     }
+
 
 
 
