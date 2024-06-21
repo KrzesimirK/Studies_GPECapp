@@ -1,9 +1,14 @@
 package com.example.GPECapp.model;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Value;
 import org.hibernate.validator.constraints.UniqueElements;
 
 
@@ -13,20 +18,22 @@ import org.hibernate.validator.constraints.UniqueElements;
 public class User{
 
 
-  @NotEmpty
+  @NotEmpty (message = "Pole nie może być puste")
   private String password;
-  @NotEmpty
+  @NotEmpty (message = "Prosze podać imię")
   private String firstName;
-  @NotEmpty
+  @NotEmpty (message = "Prosze podać nazwisko")
   private String lastName;
-  @NotNull
+  @NotNull (message= "Pole nie może być puste / musi być unikatowe")
   @Column(name = "workerNumber",nullable = false, unique = true)
   private int workerNumber;
   private String department;
   private int phoneNumber;
   @NotEmpty
+  @Pattern(regexp = "USER|ADMIN", message = "Użytkownik musi mieć nadane uprawnienia: USER   lub   ADMIN")
   private String roles;
-  @NotEmpty
+  @NotEmpty(message = "Pole nie może być puste / musi być unikatowe")
+  @Size(min = 3, max = 30, message = "Login musi mieć od 3 do 30 znaków")
   @Column(name = "login",nullable = false, unique = true)
   private String login;
 
@@ -34,8 +41,10 @@ public class User{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long idAutoUser;
 
+
 public User(){
 }
+
 
   public User (String password, String firstName, String lastName, int workerNumber,
                String department, int phoneNumber, String roles, String login, long idAutoUser){
@@ -49,6 +58,10 @@ public User(){
     this.login = login;
     this.idAutoUser = idAutoUser;
   }
+
+
+  @Transient
+  private String confirmPassword;
 
 }
 

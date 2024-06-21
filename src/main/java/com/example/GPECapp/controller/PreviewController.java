@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/preview")
 public class PreviewController {
 
-    @GetMapping("/preview")
+    @GetMapping
     public String showPreviewPage(){
         return "preview";
     }

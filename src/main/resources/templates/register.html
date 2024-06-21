@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Rejestracja nowego użytkownika</title>
+
 </head>
 <body>
 <h1>Rejestracja nowego użytkownika</h1>
 <hr>
-<form th:action="@{/users/register}" th:object="${user}" method="post"> <!--user to moje mapowanie - odwołanie do modelu user-->
-    <p>Nazwa użytkownika: <input type="text" th:field="${user.login}" /></p>
-    <p>Hasło: <input type="password" th:field="${user.password}"/></p>
-    <p>Imię: <input type="text" th:field="${user.firstName}"/></p>
-    <p>Nazwisko: <input type="text" th:field="${user.lastName}"/></p>
-    <p>Nr. Pracownika: <input type="number" th:field="${user.workerNumber}"/></p>
-    <p>Nr. Tel. : <input type="tel" th:field="${user.phoneNumber}"/></p>
-    <p>Rola: <input type="text" th:field="${user.roles}"/></p>
+<form th:action="@{/register}" th:object="${user}" method="post"> <!--user to moje mapowanie - odwołanie do modelu user-->
+
+    <div th:if="${#fields.hasErrors('login')}" style="color: red;" th:errors="*{login}">Error</div>
+    <p>Nazwa użytkownika: <input type="text" th:field="${user.login}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('password')}" style="color: red;" th:errors="*{password}">Error</div>
+    <p>Hasło: <input type="password" th:field="${user.password}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('confirmPassword')}" style="color: red;" th:errors="*{confirmPassword}">Error</div>
+    <p>Hasło: <input type="password" th:field="${user.confirmPassword}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('firstName')}" style="color: red;" th:errors="*{firstName}">Error</div>
+    <p>Imię: <input type="text" th:field="${user.firstName}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('lastName')}" style="color: red;" th:errors="*{lastName}">Error</div>
+    <p>Nazwisko: <input type="text" th:field="${user.lastName}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('workerNumber')}" style="color: red;" th:errors="*{workerNumber}">Error</div>
+    <p>Nr. Pracownika: <input type="number" th:field="${user.workerNumber}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('department')}" style="color: red;" th:errors="*{department}">Error</div>
+    <p>Wydział: <input type="text" th:field="*{department}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('phoneNumber')}" style="color: red;" th:errors="*{phoneNumber}">Error</div>
+    <p>Nr. Tel. : <input type="tel" th:field="${user.phoneNumber}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('roles')}" style="color: red;" th:errors="*{roles}">Error</div>
+    <p>Rola: <input type="text" th:field="${user.roles}" th:errorclass="invalid"/></p>
+
     <p><input type="submit" value="Zarejestruj użytkownika"/></p>
 </form>
 </body>

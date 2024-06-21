@@ -7,6 +7,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -29,7 +30,7 @@ public class HeatMeter {
     private String urzadzenie;
     @NotEmpty
     @DateTimeFormat
-    private Date dataOdczytuHM;
+    private LocalDateTime dataOdczytuHM;
     private double energia;
     private double przeplyw;
     private double tZasHM;

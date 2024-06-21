@@ -14,10 +14,12 @@
 </head>
 <body>
 <h1>Podglad na wykresach</h1>
-<hr>
+<p><a th:href="@{/users}" >Użytkownicy: Admin</a></p>
+<p><a th:href="@{/alarms}" >Alarmy: Użytkownik</a></p>
 <form id="logoutForm" action="/logout" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <button type="submit">Wyloguj</button>
 </form>
+<hr>
 </body>
 </html>

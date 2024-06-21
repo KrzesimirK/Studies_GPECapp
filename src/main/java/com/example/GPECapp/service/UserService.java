@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public User updateUser(Long idAutoUser, User userDetails){
-        User user = userRepository.findById(idAutoUser).orElse(null);
+        User user = userRepository.findById(idAutoUser).orElse(null); // tu trzeba zmienić
 
 
         user.setPassword(passwordEncoder.encode(userDetails.getPassword()));

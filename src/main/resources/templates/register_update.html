@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edycja użytkownika</title>
@@ -9,20 +10,33 @@
 <hr>
 <form action="#" th:action="@{/users/update/{id}(id=${user.idAutoUser})}" th:object="${user}" method="post">
 
+    <div th:if="${#fields.hasErrors('login')}" style="color: red" th:errors="*{login}">Error</div>
     <p>Nazwa użytkownika: <input type="text" th:field="*{login}" th:errorclass="invalid"/></p>
-    <div th:if="${#fields.hasErrors('login')}" class="red-text" th:errors="*{login}">Error</div>
 
-    <p>Hasło: <input type="password" th:field="*{password}"/></p>
+    <div th:if="${#fields.hasErrors('password')}" style="color: red" th:errors="*{password}">Error</div>
+    <p>Hasło: <input type="password" th:field="*{password}" th:errorclass="invalid"/></p>
 
+    <div th:if="${#fields.hasErrors('confirmPassword')}" style="color: red" th:errors="*{confirmPassword}">Error</div>
+    <p>Hasło: <input type="password" th:field="*{confirmPassword}" th:errorclass="invalid"/></p>
 
-    <p>Imię: <input type="text" th:field="*{firstName}"/></p>
+    <div th:if="${#fields.hasErrors('firstName')}" style="color: red" th:errors="*{firstName}">Error</div>
+    <p>Imię: <input type="text" th:field="*{firstName}" th:errorclass="invalid"/></p>
 
+    <div th:if="${#fields.hasErrors('lastName')}" style="color: red" th:errors="*{lastName}">Error</div>
+    <p>Nazwisko: <input type="text" th:field="*{lastName}" th:errorclass="invalid"/></p>
 
-    <p>Nazwisko: <input type="text" th:field="*{lastName}"/></p>
-    <p>Nr. Pracownika: <input type="number" th:field="*{workerNumber}"/></p>
-    <p>Wydział: <input type="text" th:field="*{department}"/></p>
-    <p>Nr. Tel. : <input type="tel" th:field="*{phoneNumber}"/></p>
-    <p>Rola: <input type="text" th:field="*{roles}"/></p>
+    <div th:if="${#fields.hasErrors('workerNumber')}" style="color: red" th:errors="*{workerNumber}">Error</div>
+    <p>Nr. Pracownika: <input type="number" th:field="*{workerNumber}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('department')}" style="color: red" th:errors="*{department}">Error</div>
+    <p>Wydział: <input type="text" th:field="*{department}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('phoneNumber')}" style="color: red" th:errors="*{phoneNumber}">Error</div>
+    <p>Nr. Tel. : <input type="tel" th:field="*{phoneNumber}" th:errorclass="invalid"/></p>
+
+    <div th:if="${#fields.hasErrors('roles')}" style="color: red" th:errors="*{roles}">Error</div>
+    <p>Rola: <input type="text" th:field="*{roles}" th:errorclass="invalid"/></p>
+
     <p><input type="submit" value="Zapisz" /></p>
 </form>
 </body>

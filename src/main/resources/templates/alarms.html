@@ -6,12 +6,30 @@
 </head>
 <body>
 <h1>Alarmy</h1>
-<hr>
-<form th:action="@{/alarms}" method="post">
-<!--    <p>Nazwa użytkownika: <input type="text" name="login"/></p>-->
-<!--    <p>Hasło: <input type="password" name="password"/></p>-->
-<!--    <p><input type="submit" value="Zaloguj się"/></p>-->
+<p><a th:href="@{/users}" >Użytkownicy: Admin</a></p>
+<p><a th:href="@{/preview}" >Wykresy: Użytkownik</a></p>
+<form id="logoutForm" action="/logout" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <button type="submit">Wyloguj</button>
 </form>
-<!--<p><a th:href="@{/register}">Zarejestruj się</a></p>-->
+
+<hr>
+
+<form th:action="@{/alarms}" th:object="${regdhn}" method="get">
+
+        <label for="dataStart">Start Date:</label>
+        <input type="datetime-local" id="dataStart" name="dataStart" required>
+        <br>
+        <label for="dataStop">End Date:</label>
+        <input type="datetime-local" id="dataStop" name="dataStop" required>
+        <br>
+        <button type="submit">Wyszukaj</button>
+
+
+
+
+
+</form>
+
 </body>
 </html>

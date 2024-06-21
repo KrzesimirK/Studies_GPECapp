@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -29,7 +30,7 @@ public class RegDHN {
     private String lokalizacja;
     @NotEmpty
     @DateTimeFormat
-    private Date dataOdczytuReg;
+    private LocalDateTime dataOdczytuReg;
     private double tZWyl;
     private double histerezaTzalaczenia;
     private double tZReal;

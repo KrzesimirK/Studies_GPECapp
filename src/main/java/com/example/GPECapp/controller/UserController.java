@@ -1,6 +1,8 @@
 package com.example.GPECapp.controller;
 
+import com.example.GPECapp.model.RegDHN;
 import com.example.GPECapp.model.User;
+import com.example.GPECapp.repository.RegRepository;
 import com.example.GPECapp.repository.UserRepository;
 import com.example.GPECapp.service.UserService;
 import jakarta.validation.Valid;
@@ -11,6 +13,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -28,18 +32,6 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
-    }
-
-
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user){
-        userService.createUser(user);
-        return "redirect:/users";
-    }
 
 
     //pobiera aktualnie przypisane dane
@@ -58,6 +50,11 @@ public class UserController {
                              Errors errors,
                              SessionStatus sessionStatus){
         if (errors.hasErrors()){
+            user.setIdAutoUser(idAutoUser);
+            return "register_update";
+        } if (!user.getPassword().equals(user.getConfirmPassword())){
+            errors.rejectValue("confirmPassword", "error.user","Hasła różną się od siebie!");
+            user.setIdAutoUser(idAutoUser);
             return "register_update";
         }
         userService.updateUser(idAutoUser, user);
@@ -69,8 +66,6 @@ public class UserController {
         userService.deleteUser(idAutoUser);
         return "redirect:/users";
     }
-
-
 
 
 }
