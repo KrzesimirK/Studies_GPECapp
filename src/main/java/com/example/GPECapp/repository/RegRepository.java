@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface RegRepository extends JpaRepository<RegDHN, Long> {
 
-    @Query(value = "SELECT from regdhn where ((tZasCO -tZasZadanaAkt) > 5 ) and dataOdczytuReg between ?1 and ?2",
+    @Query(value = "SELECT * from regdhn where ((tZasCO -tZasZadanaAkt) > 5 ) and dataOdczytuReg between ?1 and ?2",
             nativeQuery = true)
    List<RegDHN> findByDataOdczytuRegBetween(LocalDateTime dataStart, LocalDateTime dataStop);
 
