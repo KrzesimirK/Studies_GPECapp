@@ -23,12 +23,14 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin((form)->form.loginPage("/login")
-                        .defaultSuccessUrl("/alarms")
+                        .defaultSuccessUrl("/alarms", true)
                         .permitAll()
                 ).logout((logO)->logO
                         .permitAll()
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
+                ).exceptionHandling((ex)-> ex
+                      .accessDeniedPage("/403")
                 );
         return http.build();
     }

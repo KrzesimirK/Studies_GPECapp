@@ -2,42 +2,101 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rejestracja nowego użytkownika</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
 
 </head>
 <body>
 <h1>Rejestracja nowego użytkownika</h1>
 <hr>
-<form th:action="@{/register}" th:object="${user}" method="post"> <!--user to moje mapowanie - odwołanie do modelu user-->
+<form th:action="@{/register}" th:object="${user}" method="post" >
+    <!--user to moje mapowanie - odwołanie do modelu user-->
 
-    <div th:if="${#fields.hasErrors('login')}" style="color: red;" th:errors="*{login}">Error</div>
-    <p>Nazwa użytkownika: <input type="text" th:field="${user.login}" th:errorclass="invalid"/></p>
+    <div class="d-flex align-items-center p-2">
+        <label for="login"><strong>Nazwa użytkownika:</strong></label>
+        <input type="text" class="form-control" id="login" th:field="${user.login}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+    </div>
 
-    <div th:if="${#fields.hasErrors('password')}" style="color: red;" th:errors="*{password}">Error</div>
-    <p>Hasło: <input type="password" th:field="${user.password}" th:errorclass="invalid"/></p>
 
-    <div th:if="${#fields.hasErrors('confirmPassword')}" style="color: red;" th:errors="*{confirmPassword}">Error</div>
-    <p>Hasło: <input type="password" th:field="${user.confirmPassword}" th:errorclass="invalid"/></p>
+    <div class="d-flex align-items-center p-2">
+        <label for="password"><strong>Hasło:</strong></label>
+        <input type="password" class="form-control" id="password" th:field="${user.password}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    </div>
 
-    <div th:if="${#fields.hasErrors('firstName')}" style="color: red;" th:errors="*{firstName}">Error</div>
-    <p>Imię: <input type="text" th:field="${user.firstName}" th:errorclass="invalid"/></p>
 
-    <div th:if="${#fields.hasErrors('lastName')}" style="color: red;" th:errors="*{lastName}">Error</div>
-    <p>Nazwisko: <input type="text" th:field="${user.lastName}" th:errorclass="invalid"/></p>
+    <div class="d-flex align-items-center p-2">
+        <label for="confirmPassword"><strong>Potwierdź hasło:</strong></label>
+        <input type="password" class="form-control" id="confirmPassword" th:field="${user.confirmPassword}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+    </div>
 
-    <div th:if="${#fields.hasErrors('workerNumber')}" style="color: red;" th:errors="*{workerNumber}">Error</div>
-    <p>Nr. Pracownika: <input type="number" th:field="${user.workerNumber}" th:errorclass="invalid"/></p>
 
-    <div th:if="${#fields.hasErrors('department')}" style="color: red;" th:errors="*{department}">Error</div>
-    <p>Wydział: <input type="text" th:field="*{department}" th:errorclass="invalid"/></p>
+    <div class="d-flex align-items-center p-2">
+        <label for="firstName"><strong>Imię:</strong></label>
+        <input type="text" class="form-control" id="firstName" th:field="${user.firstName}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+    </div>
 
-    <div th:if="${#fields.hasErrors('phoneNumber')}" style="color: red;" th:errors="*{phoneNumber}">Error</div>
-    <p>Nr. Tel. : <input type="tel" th:field="${user.phoneNumber}" th:errorclass="invalid"/></p>
 
-    <div th:if="${#fields.hasErrors('roles')}" style="color: red;" th:errors="*{roles}">Error</div>
-    <p>Rola: <input type="text" th:field="${user.roles}" th:errorclass="invalid"/></p>
+    <div class="d-flex align-items-center p-2">
+        <label for="lastName"><strong>Nazwisko:</strong></label>
+        <input type="text" class="form-control" id="lastName" th:field="${user.lastName}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+    </div>
 
-    <p><input type="submit" value="Zarejestruj użytkownika"/></p>
+
+    <div class="d-flex align-items-center p-2">
+        <label for="workerNumber"><strong>Nr. Pracownika:</strong></label>
+        <input type="number" class="form-control" id="workerNumber" th:field="${user.workerNumber}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('workerNumber')}" th:errors="*{workerNumber}"></div>
+    </div>
+
+
+    <div class="d-flex align-items-center p-2">
+        <label for="department"><strong>Wydział:</strong></label>
+        <input type="text" class="form-control" id="department" th:field="${user.department}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></div>
+    </div>
+
+
+    <div class="d-flex align-items-center p-2">
+        <label for="phoneNumber"><strong>Nr. Tel.:</strong></label>
+        <input type="tel" class="form-control" id="phoneNumber" th:field="${user.phoneNumber}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+    </div>
+
+
+    <div class="d-flex align-items-center p-2">
+        <label for="roles"><strong>Rola:</strong></label>
+        <input type="text" class="form-control" id="roles" th:field="${user.roles}" th:errorclass="is-invalid"/>
+        <div class="invalid-feedback p-2 mt-2" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+    </div>
+
+    <div class="d-flex align-items-center p-2">
+        <button type="submit" class="btn btn-primary">Zarejestruj użytkownika</button>
+        <a class="btn btn-danger" href="/users">Anuluj</a>
+    </div>
+
 </form>
+
+
+<footer id="footer" class="bg-dark text-white text-center py-3">
+    <p>Gdańskie Przedsiębiorstwo Energetyki Cieplnej Sp. z o.o. Słowackiego 159 B, 80-298 Gdańsk</p>
+    <p>All rights reserved. Copyright by GPEC 2017-2024</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

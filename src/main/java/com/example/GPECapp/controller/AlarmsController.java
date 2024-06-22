@@ -32,6 +32,7 @@ public class AlarmsController {
            LocalDateTime dataStart,
            LocalDateTime dataStop,
             Model model){
+
         List<RegDHN> regDHNS = alarmService.findAlarmsCO(dataStart, dataStop);
         model.addAttribute("regDHNS", regDHNS);
         return "alarms";

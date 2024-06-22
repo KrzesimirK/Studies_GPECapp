@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRAK DOSTEPU</title>
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Minimalna wysokość ekranu, aby zawartość była centralna */
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<div class="container-access">
+    <h1>Brak dostępu</h1>
+    <p>Nie posiadasz wystarczających uprawnień, aby wyświetlić tę stronę!</p>
+    <a class="btn btn-primary" href="/alarms">Przejdź do strony Alarmy</a>
+</div>
+</body>
+</html>
