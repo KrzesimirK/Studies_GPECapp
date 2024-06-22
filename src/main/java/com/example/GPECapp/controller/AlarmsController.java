@@ -22,19 +22,22 @@ import java.util.List;
 @RequestMapping("/alarms")
 public class AlarmsController {
 
-//    @GetMapping
-//    public String showAlarmsPage(){
-//        return "alarms";
-//    }
-
-    @Transient
-    private LocalDateTime dataStop;
-
-    @Transient
-    private LocalDateTime dataStart;
 
     @Autowired
     private AlarmService alarmService;
+
+
+    @GetMapping
+    public String getAlarmsCO (
+           LocalDateTime dataStart,
+           LocalDateTime dataStop,
+            Model model){
+        List<RegDHN> regDHNS = alarmService.findAlarmsCO(dataStart, dataStop);
+        model.addAttribute("regDHNS", regDHNS);
+        return "alarms";
+    }
+
+}
 
 //    @GetMapping
 //    public String getAlarmsCO (
@@ -46,19 +49,7 @@ public class AlarmsController {
 //        return "alarms";
 //    }
 
-    @GetMapping
-    public String getAlarmsCO (
-           LocalDateTime dataStart,
-           LocalDateTime dataStop,
-            Model model){
-        List<RegDHN> alarmsCO = alarmService.findAlarmsCO(dataStart, dataStop);
-        model.addAttribute("alarmsCO", alarmsCO);
-        return "alarms";
-    }
-
-
-
-
-
-
-}
+//    @GetMapping
+//    public String showAlarmsPage(){
+//        return "alarms";
+//    }

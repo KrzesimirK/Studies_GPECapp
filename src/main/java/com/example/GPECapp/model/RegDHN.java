@@ -56,4 +56,10 @@ public class RegDHN {
     private byte trybPracyCWU;
     private byte wysterowanieZaworuCWU;
 
+    @Transient
+    private LocalDateTime dataStop;
+
+    @Transient
+    private LocalDateTime dataStart;
+
 }

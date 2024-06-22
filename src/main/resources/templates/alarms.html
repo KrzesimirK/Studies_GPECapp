@@ -24,12 +24,29 @@
         <input type="datetime-local" id="dataStop" name="dataStop" required>
         <br>
         <button type="submit">Wyszukaj</button>
-
-
-
-
-
 </form>
+<hr>
+
+<table border="3">
+    <tr>
+        <th>Data wystąpienie</th>
+        <th>Lokalizacja</th>
+        <th>Identyfikator</th>
+        <th>Przyczyna</th>
+    </tr>
+    <tr th:each="regDHNS : ${regDHNS}" method="post">
+        <td th:text="${regDHNS.dataOdczytuReg}"></td>
+        <td th:text="${regDHNS.lokalizacja}"></td>
+        <td th:text="${regDHNS.identyfikator}"></td>
+        <td>Przekroczenie temp. CO > 5</td>
+    </tr>
+</table>
+
+<hr>
+<p>Najpóźniejsza data: <span th:text="${dataOdczytuReg} ? ${#dates.format(latestDate, 'dd-MM-yyyy HH:mm:ss')} : 'Brak danych'"></span></p>
+
+
+
 
 </body>
 </html>
