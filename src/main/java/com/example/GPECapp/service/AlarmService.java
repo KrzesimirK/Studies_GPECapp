@@ -24,6 +24,10 @@ public class AlarmService {
 
   }
 
+    public RegDHN getDataOdczytuRegById(Long idAutoReg){
+        return regRepository.findById(idAutoReg).orElse(null);
+    }
+
     public List<RegDHN> getAllData() {
         return regRepository.findAll();
     }

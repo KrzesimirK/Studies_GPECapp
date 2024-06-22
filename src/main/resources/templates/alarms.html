@@ -5,7 +5,7 @@
     <title>Alarmy</title>
 </head>
 <body>
-<h1>Alarmy</h1>
+<h1>Alarmy - wystąpienie anomalii </h1>
 <p><a th:href="@{/users}" >Użytkownicy: Admin</a></p>
 <p><a th:href="@{/preview}" >Wykresy: Użytkownik</a></p>
 <form id="logoutForm" action="/logout" method="post">
@@ -43,7 +43,6 @@
 </table>
 
 <hr>
-<p>Najpóźniejsza data: <span th:text="${dataOdczytuReg} ? ${#dates.format(latestDate, 'dd-MM-yyyy HH:mm:ss')} : 'Brak danych'"></span></p>
 
 
 

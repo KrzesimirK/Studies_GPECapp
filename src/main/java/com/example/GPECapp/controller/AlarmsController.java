@@ -39,17 +39,3 @@ public class AlarmsController {
 
 }
 
-//    @GetMapping
-//    public String getAlarmsCO (
-//            @RequestParam("dataStart")@DateTimeFormat (iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataStart,
-//            @RequestParam("dataStop")@DateTimeFormat (iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataStop,
-//            Model model){
-//        List<RegDHN> alarmsCO = alarmService.findAlarmsCO(dataStart, dataStop);
-//        model.addAttribute("alarmsCO", alarmsCO);
-//        return "alarms";
-//    }
-
-//    @GetMapping
-//    public String showAlarmsPage(){
-//        return "alarms";
-//    }
